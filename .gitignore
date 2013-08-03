@@ -4,3 +4,7 @@
 *.jar
 *.war
 *.ear
+
+log.txt
+version.dat
+update.jar.tmp
