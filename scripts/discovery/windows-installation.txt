@@ -1,0 +1,5 @@
+- Get Bonjour for Windows: http://support.apple.com/kb/DL999 
+
+If you have a extra firewall (not the windows built in) on this windows pc:
+- Open 5353 udp-port 
+- Grant internet access to the mDNSresponder.exe
