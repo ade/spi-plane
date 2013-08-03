@@ -63,25 +63,25 @@ public class UpdateRunner {
 
             if(response != null && response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                 Log.d("Download ok, size: " + response.getEntity().getContentLength());
+
+                try {
+                    System.out.println("Saving new JAR.");
+                    InputStream in = new BufferedInputStream(response.getEntity().getContent());
+                    OutputStream out = new BufferedOutputStream(new FileOutputStream(new File("update.jar.tmp")));
+                    IOUtils.copy(in, out);
+                    out.flush();
+                    out.close();
+
+                    if(lastModified != null) {
+                        Log.d("Saving version file.");
+                        FileUtils.writeStringToFile(versionFile, lastModified);
+                    }
+                    Log.d("Save OK.");
+                } catch (Exception e) {
+                    Log.d("Save failed.");
+                }
             } else {
                 Log.d("Download failed.");
-            }
-
-            try {
-                System.out.println("Saving new JAR.");
-                InputStream in = new BufferedInputStream(response.getEntity().getContent());
-                OutputStream out = new BufferedOutputStream(new FileOutputStream(new File("update.jar.tmp")));
-                IOUtils.copy(in, out);
-                out.flush();
-                out.close();
-
-                if(lastModified != null) {
-                    Log.d("Saving version file.");
-                    FileUtils.writeStringToFile(versionFile, lastModified);
-                }
-                Log.d("Save OK.");
-            } catch (Exception e) {
-                Log.d("Save failed.");
             }
         }
     }

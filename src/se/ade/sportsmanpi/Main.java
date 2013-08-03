@@ -11,9 +11,9 @@ public class Main {
         if(args != null && args.length > 0 && args[0].equals("update")) {
             new UpdateRunner().update();
         } else if(args != null && args.length > 0 && args[0].equals("test")) {
-            //new DroneRunner(true).run();
+            new DroneRunner(true).run();
         } else {
-            //new DroneRunner(false).run();
+            new DroneRunner(false).run();
         }
     }
 }
